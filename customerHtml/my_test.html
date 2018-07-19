@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<title></title>
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<style type="text/css">
+			.container-ul {
+				height: 500px;
+				width: 1500px;
+				list-style: none;
+			}
+			
+			.container-ul-li {
+				display: inline-block;
+				width: 100%;
+				height: 30px;
+				float: left;
+			}
+			
+			.customer-ul {
+				list-style-type: none;
+				height: 100%;
+				width: 100%;
+			}
+			
+			.customer-li {
+				display: inline-block;
+				width: 10%;
+				height: 30px;
+				border: 1px solid black;
+				border-right: none;
+				float: left;
+				vertical-align: center;
+			}
+			
+			.costomer-ul li:last-child {
+				border: 1px solid black;
+			}
+			
+			.li-content {
+				height: 20px;
+				width: 60%;
+				display: inline-block;
+				margin-top: 5px;
+				margin-left: 2%;
+			}
+			
+			.tool {
+				height: 20px;
+				width: 80px;
+			}
+		</style>
+		<script type="application/javascript">
+			var page = {
+				status: false
+			};
+			function addUlEvent(clickUl){
+				clickUl.on('click',function(e){
+//					console.log(e.target);
+					var content = e.target.innerHTML;
+					var id = e.target.id;
+					if(content == "查看"){
+						
+					}else if(content == "修改"){
+						
+					}else if(content =="删除"){
+						
+					}else{
+						
+					}
+				})
+			}
+			function createShowDataUl(data) {
+				var $ul = $('<ul></ul>');
+				$ul.addClass('customer-ul');
+				var keyArr = ["id", "code", "name", "telephone", "cardNumber", "registerDate", "healthReportProvideDate", "操作"];
+				for(var i = 0; i < keyArr.length; i++) {
+					var $li = $('<li></li>');
+					$li.addClass('customer-li');
+					if(keyArr[i] === "id") {
+						var $checkbox = $("<input type='checkbox'/>");
+						$li.append($checkbox);
+											
+					}
+					if(keyArr[i] === "操作") {
+						var $a1 = $('<a href="#"></a>');
+						var $a2 = $('<a href="#"></a>');
+						var $a3 = $('<a href="#"></a>');
+						$a1.html("查看");
+						$a2.html("修改");
+						$a3.html("删除");
+						$li.append($a1);
+						$li.append($a2);
+						$li.append($a3);
+						$a1.addClass('a-operation');
+						$a2.addClass('a-operation');
+						$a3.addClass('a-operation');
+						$a1.attr('id',data.id);
+						$a2.attr('id',data.id);
+						$a3.attr('id',data.id);
+						
+					}
+					var $span = $('<span></span>');
+					$span.addClass('li-content');
+
+					$span.text(data[keyArr[i]]);
+					$li.append($span);
+					$ul.append($li);
+				}
+				addUlEvent($ul);
+				return $ul;
+			}
+
+			//创建子li标签
+			function createShowDataLi(data) {
+				var $li = $('<li></li>');
+				$li.addClass('container-ul-li');
+				var show_ul = createShowDataUl(data);
+				$li.append(show_ul);
+				return $li;
+			}
+
+			function createShowDataTable(data, container_ul) {
+				container_ul.empty();
+				$.each(data, function(index, customer) {
+					var customer_li = createShowDataLi(customer);
+					container_ul.append(customer_li);
+				});
+			}
+
+			function getPageSize() {
+				return $("#pageSizeSelect option:selected").val();
+			}
+
+			function loadPage(url, pageNum, container_ul) {
+				console.log('load page');
+				console.log("currPage:" + pageNum);
+				var pageSize = getPageSize();
+				$.get(url, function(data) {
+					//						var data = JSON.parse(result);
+					console.log(data);
+					createShowDataTable(data.list, container_ul);
+					var pageSize = data.pageSize;
+					page.status = true;
+					page.currPage = data.pageNo;
+					page.endPage = (data.count + pageSize - 1) / pageSize;
+				})
+			}
+
+			function addPageEvent() {
+				$("#pageTool").on('click', function(e) {
+					//			console.log(e);
+					var content = e.target.innerHTML;
+					if(page.status){
+						if(content == "上一页"){
+							var prePage = page.currPage<=1?1:page.currPage - 1;
+							loadPage('./js/data.json', prePage, $(".container-ul"));
+						}else if(content == "下一页"){
+							var nextPage = page.currPage>=page.endPage?page.endPage:currPage+1;
+							loadPage('./js/data.json', nextPage, $(".container-ul"));
+						}else if(content == "尾页"){
+							loadPage('./js/data.json', page.endPage, $(".container-ul"));
+						}else{
+							loadPage('./js/data.json', 1, $(".container-ul"));
+						}
+					}
+					page.status = false;
+				})
+			}
+			$(function() {
+				var url = './js/data.json';
+				var container_ul = $(".container-ul");
+				loadPage(url, 1, container_ul);
+				addPageEvent();
+			})
+		</script>
+	</head>
+
+	<body>
+		<div id='pageContent'>
+			<ul class="container-ul"></ul>
+			<!--<ul class="ul-container">
+				<li class="header">
+					<ul class="customer">姓名</ul>
+					<ul class="customer">年龄</ul>
+					<ul class="customer">性别</ul>
+				</li>
+			</ul>-->
+
+		</div>
+		<div id="pageTool">
+			<span class="pageNum"> 
+				<a href="javascript:void(0)" id='firstPage'>首页</a> 
+				<a href="javascript:void(0)" id='upPage'>上一页</a> 
+				<a href="javascript:void(0)" id='currentPage'></a> 
+				<a href="javascript:void(0)" id='nextPage'>下一页</a> 
+				<a href="javascript:void(0)" id='endPage'>最后一页</a>
+			</span>
+			<span>
+				<fieldset data-role="fieldcontain" id="pageSizeSelect">
+					<label for="day">显示条数</label> <select name="day" id="day">
+						<option value="5">5</option>
+						<option value="10">10</option>
+						<option value="15">15</option>
+					</select>
+				</fieldset>
+			</span>
+		</div>
+	</body>
+
+</html>

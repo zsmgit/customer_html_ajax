@@ -1,0 +1,107 @@
+* {
+	font-size: 15px;
+}
+
+#tools-div {
+	width: 100%;
+	height: 40px;
+}
+.tools-h1{
+	width: 20%;
+	margin-left: 40%;
+	display: inline-block;
+}
+
+.tools-span {
+	display: inline-block;
+	width: 200px;
+	height: 40px;
+	position: absolute;
+	right: 30px;
+	top: -5px;
+}
+
+.container-ul {
+	height: 560px;
+	width: 360px;
+	list-style: none;
+}
+
+
+.container-ul-li {
+display: inline-block;
+padding: 0;
+font-size: 0px;
+width: 100%;
+height: 56px;
+float: left;
+}
+
+.customer-ul {
+	list-style-type: none;
+	height: 100%;
+	width: 100%;
+}
+
+.customer-li {
+	display: inline-block;
+	width: 10%;
+	height: 56px;
+	border: 1px solid black;
+	border-right: none;
+	float: left;
+	vertical-align: center;
+}
+
+#pageTool-div {
+	width: 100%;
+	height: 40px;
+	padding-left: 60%;
+}
+
+.pageTool-span1 {
+	display: inline-block;
+	width: 340px;
+	height: 40px;
+	float: left;
+}
+
+.pageTool-span2 {
+	display: inline-block;
+	width: 300px;
+	height: 40px;
+	float: left;
+	
+}
+
+.pageTool-a {
+	display: inline-block;
+	text-decoration: none;
+	vertical-align: middle;
+	width: 60px;
+	height:27.5px;
+	padding: 0 0;
+	padding-top: 12.5px;
+	float: left;
+	margin:0;
+	margin-left: 3px;
+}
+.pageSize-num{
+	display: inline-block;
+	padding-top: 12px;
+	width: 40px;
+	height: 24px;
+	vertical-align: top;
+}
+#pageSizeSelect{
+	display: inline-block;
+	height: 40px;
+	width: 200px;
+}
+#pageSizeSelect div{
+	display: inline-block;
+	margin: 0;
+}
+.size-select{
+	height: 1rem;
+}

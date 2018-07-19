@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+		<title>签约客户管理</title>
+		<link rel="stylesheet" href="js/jquery_mobile/jquery.mobile-1.4.5/jquery.mobile-1.4.5.css">
+		<!--  <link rel="stylesheet" href="css/form.css" /> -->
+		<script src="js/jquery/jquery-1.8.3.min.js"></script>
+		<script src="js/jquery_mobile/jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
+		<script src="js/form.js"></script>
+		<script type="application/javascript">
+			
+		</script>
+	</head>
+	<body>
+		<div data-role="page">
+			<div data-role="content">
+				<form method="post" id='customer-form' data-ajax='false'>
+					<input type="hidden" name="id" id="id" >
+					<input type="hidden"  name="type" id="type">
+					<input type="hidden"  name="registerUser.id" >
+					<label for="code" id="codeLabel" class='tittle_label'>*客户编号:</label>
+					<input type="text" name="code" id="code" >
+					<label for="name" class='tittle_label'>*客户姓名:</label>
+					<input type="text" name="name" id="name">
+					<label for="telephone" class='tittle_label'>*电话号码:</label>
+					<input type="text" name="telephone" id="telephone">
+					<fieldset data-role="controlgroup">
+					      <legend>*请选择性别：</legend>
+					        <label for="male">男性</label>
+					        <input type="radio" name="sex" id="male" value="1">
+					        <label for="female">女性</label>
+					        <input type="radio" name="sex" id="female" value="2">	
+					</fieldset>
+					<!-- <label for="sex" class='tittle_label'>*性别:</label>
+					<input type="checkbox" name="sex" value='1' >男
+					<input type="checkbox" name="sex" value='2' >女
+					 <input type="text" name="sex" id="sex">-->
+					<label for="nation" class='tittle_label'>民族:</label>
+					<input type="text" name="nation" id="nation">
+					<fieldset data-role="controlgroup">
+					      <legend>请选择证件类型：</legend>
+					        <label for="gangao">港澳通行证</label>
+					        <input type="radio" name="cardType" id="gangao" value="1">	
+					        <label for="passport">护照</label>
+					        <input type="radio" name="cardType" id="passport" value="2">	
+					        <label for="indentity">身份证</label>
+					        <input type="radio" name="cardType" id="indentity" value="3">
+					</fieldset>
+					<!--  <label for="cardType" class='tittle_label'>*证件类型:</label>
+					<input type="text" name="cardType" id="cardType">-->
+					<label for="cardNumber" class='tittle_label'>*证件号码:</label>
+					<input type="text" name="cardNumber" id="cardNumber">
+					<fieldset data-role="controlgroup">
+					      <legend>婚否：</legend>
+					        <label for="notmarry">未婚</label>
+					        <input type="radio" name="married" id="notmarry" value="1">	
+					        <label for="marry">已婚</label>
+					        <input type="radio" name="married" id="marry" value="2">
+					</fieldset>
+					<!--  <label for="married" class='tittle_label'>婚否:</label>
+					<input type="text" name="married" id="married">-->
+					<label for="address" class='tittle_label'>地址:</label>
+					<input type="text" name="address" id="address">
+					<label for="birthday" class='tittle_label'>*出生日期:</label>
+					<input type="date" name="birthday" id="birthday">
+					<label for="registerDate" class='tittle_label'>*体检报告提供日期：</label>
+					<input type="date" name="registerDate" id="registerDate"/>
+					<label for="healthReportProvideDate" class='tittle_label'>*体检报告提供日期：</label>
+					<input type="date" name="healthReportProvideDate" id="healthReportProvideDate" /> 
+					<label for="hospital" class='tittle_label'>*体检单位</label>
+					<input type="text" name="hospital" id="hospital" />
+				</form>
+				<button type="button" id='submit-btn'>确认</button>
+			</div>
+		</div>
+	</body>
+</html>

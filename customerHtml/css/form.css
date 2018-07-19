@@ -1,0 +1,18 @@
+/*.title_lable{
+	display: inline-block;
+}*/
+#customer-form .title_lable{
+	display: inline-block;
+	width: 15%;
+	margin: 0;
+	margin-left: 10%;
+	
+}
+#customer-form input{
+	display: inline-block;
+	width: 30%;
+}
+#customer-form div{
+	display: inline-block;
+	width: 30%;
+}

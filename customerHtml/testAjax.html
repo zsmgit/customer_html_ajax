@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+		<title>签约客户管理</title>
+		<link rel="stylesheet" href="./css/customerFormalList.css" />
+		<link rel="stylesheet" href="./js/jquery_mobile/jquery.mobile-1.4.5/jquery.mobile-1.4.5.css">
+		<script src="./js/jquery/jquery-1.8.3.min.js"></script>
+		<script src="./js/jquery_mobile/jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
+		<script type="application/javascript">
+			function submitEnvent(){
+				$("#submit").click(function(){
+					console.log("avdd");
+					$.ajax({
+						type:"post",
+						url:"http://localhost:8080/huadaGene/a/customerManagement/customerMobile/mobileSave",
+						async:true,
+						data:$("#form").serialize(),
+						success:function(data){
+							console.log(data);
+						}
+					});
+				})
+			}
+			$(function(){
+				submitEnvent();
+			})
+			
+		</script>
+	</head>
+
+	<body>
+		<div>
+			<form></form>
+			<button id='submit-btn'>确认</button>
+		</div>
+		<article data-role="content">
+			<form method="post" id="form">
+				<label for="id">id:</label>
+				<input type="text" name="id" id="id" value="" />
+				<label for="name">name:</label>
+				<input type="text" name="name" id="name" value="" />
+				<input type="button" name="sumbit" id="submit" value="提交">
+			</form>
+		</article>
+
+	</body>
+
+</html>
